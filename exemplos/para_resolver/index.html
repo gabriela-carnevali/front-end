@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="src/styles/style.css">
+    <title>TechFood - Cardápio Digital</title>
+</head>
+<body>
+    <header>
+        <h1>TechFood</h1>
+        <nav>
+            <a href="#" class="search-icon" aria-label="Pesquisa de produtos">🔍</a> 
+            <a href="#" class="cart-icon" aria-label="Produtos no carrinho">🛒</a>   
+        </nav>
+    </header>
+
+    <main>
+    <section class="banner-hero">
+        <h2>Sabor & Saber</h2>
+        <p>A melhor gastronomia tecnológica da região.</p>
+    </section>
+
+    <section class="menu-container">
+        <article class="abas-lista">
+            <input type="radio" name="categoria" id="massa" checked>
+            <label for="massa">Massas</label>
+
+            <input type="radio" name="categoria" id="bebida">
+            <label for="bebida">Bebidas</label>
+
+            <input type="radio" name="categoria" id="doce">
+            <label for="doce">Doces</label>
+        </article>
+
+        <article class="card">
+            <img src="src/images/lasanha.jpg">
+            <h2>Lasanha Tradicional</h2>
+            <p>Massa artesanal ao molho bolonhesa com 4 queijos.</p>
+            <h3>R$ 45,90</h3>
+            <button class="btn-pedir" aria-label="Fazer pedido">Pedir</button>
+        </article>
+
+
+        <article class="card">
+            <img src="src/images/ravioli.jpg">
+            <h2>Ravioli de Espinafre</h2>
+            <p>Recheado com ricota fresca e nozes picadas.</p>
+            <h3>R$ 39,00</h3>
+            <button class="btn-pedir" aria-label="Fazer pedido">Pedir</button>
+        </article>
+    </section>
+</main>
+
+    <footer>
+        <p>Siga-nos:</p> 
+        <a href="#">Facebook</a> 
+        <a href="#">Instagram</a>
+    </footer>
+</body>
+</html>
