@@ -28,11 +28,3 @@ saudacao.textContent = hora < 18 ? "Bem-vindo! Bom almoço!" : "Bem-vindo! Boa j
 
 nomeCompleto.innerHTML = "<strong>Gabriela</strong> Carnevali Gonçalves <em>Lima</em>"
 
-
-
-
-
-const foto = document.querySelector('#foto-destaque')
-
-const caminhoAtual = foto.getAttribute('src')
-
