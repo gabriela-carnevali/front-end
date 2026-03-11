@@ -28,3 +28,15 @@ saudacao.textContent = hora < 18 ? "Bem-vindo! Bom almoço!" : "Bem-vindo! Boa j
 
 nomeCompleto.innerHTML = "<strong>Gabriela</strong> Carnevali Gonçalves <em>Lima</em>"
 
+const imagem_card_um = document.querySelector('#foto-destaque')
+
+imagem_card_um.src = './src/images/esgotado.jpg'
+
+
+const esgotado = document.querySelector('.card h3')
+
+esgotado.style.color = "#808080"
+
+const primeiro_botao = document.querySelector('.bt-pedido')
+
+primeiro_botao.style.backgroundColor = "#808080"

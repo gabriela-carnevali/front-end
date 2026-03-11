@@ -55,3 +55,7 @@ console.log("LOG do elemento (visão HTML):", topo);
 // O console.dir(topo) mostra o elemento como um OBJETO JavaScript puro.
 // É aqui que o aluno vê que o 'topo' tem centenas de propriedades (style, children, id, etc.)
 console.dir(topo);
+
+const foto = document.querySelector('#foto-destaque')
+
+const caminhoAtual = foto.getAttribute('src')

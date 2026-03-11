@@ -1,112 +1,119 @@
-/* Configuração Geral */
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-
-/* EXERCÍCIO 3 - ID E HIERARQUIA */
-#cabecalho-principal {
-    background-color: #1b5e20; /* Verde escuro */
-    color: white;
-    padding: 30px;
-    text-align: center;
+/* --- RESET E BASE --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
 }
 
-.link-nav {
-    color: white;
-    text-decoration: none;
-    margin: 0 15px;
+#cabecalho-eco {
+  background-color: #1b5e20;
+  color: white;
+  padding: 20px;
+  text-align: center;
 }
 
-/* Essencial para usabilidade de quem usa teclado */
-.link-nav:focus {
-outline: 3px solid #f1c40f;
-background-color: #1b5e20;
-}
+/* Hamburguer (Oculto no Desktop) */
+#check-menu, #icone-btn { display: none; }
 
-/* EXERCÍCIO 4 - FEEDBACK NA NAV */
-.link-nav:hover {
-    color: #81c784;
-    text-decoration: underline;
-}
+#nav-eco ul { list-style: none; margin-top: 15px; }
+#nav-eco li { display: inline-block; margin: 0 10px; }
+#nav-eco a { color: white; text-decoration: none; font-weight: bold; }
 
-.exit-button {
-    color: white;
-    position:fixed;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-    background-color: green;
-    font-size: 16px;
-}
-
-.exit-button:hover {
-    color:red;
-    text-decoration: underline;
-}
-
-.exit-button:focus {
-    background-color: green;
-}
-
-.menu-button{
-    color:white;
-    background-color: green;
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    cursor:pointer;
-    font-size: 16px;
-}
-
+/* --- GRID E CARDS --- */
 .lista-noticias {
-    display: flex;
-    justify-content: space-around;
-    padding: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 40px;
 }
 
 .card-noticia {
-    width: 300px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    transition: 0.3s; /* Para o feedback ser suave */
+  border: 2px solid #2e7d32;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: white;
+  transition: 0.3s;
 }
 
-/* EXERCÍCIO 4 - FEEDBACK NO CARD */
-.card-noticia:hover {
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    cursor: pointer;
-    background-color: #f9f9f9;
-}
-
-/* EXERCÍCIO 3 - AJUSTE DE IMAGEM (UX) */
 .card-noticia img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 4px;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
 }
 
-/* EXERCÍCIO 3 - HIERARQUIA UI */
-.card-noticia h2 {
-    color: #2e7d32; /* Título em destaque */
-    font-size: 22px;
-    margin: 10px 0;
+/* --- VÍDEO E THUMBNAIL (SOLUÇÃO ERRO 153) --- */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* Proporção 16:9 */
+  height: 0;
+  overflow: hidden;
+  background: #000;
+  border-radius: 4px;
 }
 
-.card-noticia p {
-    color: #666; /* Texto secundário */
-    font-size: 14px;
-    line-height: 1.6;
+.video-container img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 2; /* Fica na frente do iframe */
+  object-fit: cover;
 }
 
-.go-button{
-    background-color: rgb(230, 248, 230);
-    color:green;
-    font-size: 16px;
+.video-container iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 1; /* Fica atrás da imagem */
+}
+
+.btn-leitura {
+  background-color: #1b5e20;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+  border-radius: 4px;
+}
+
+/* --- NOVO: AULA 5 - CLASSE DE MANIPULAÇÃO --- */
+.noticia-destaque {
+    border: 4px solid #ff9800 !important;
+    background-color: #fff3e0;
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.1);
+}
+
+/* --- RESPONSIVIDADE (MEDIA QUERIES) --- */
+
+/* Tablets */
+@media screen and (max-width: 1024px) {
+  .lista-noticias {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Celulares */
+@media screen and (max-width: 600px) {
+  #icone-btn {
     display: block;
-    margin: 0 auto;
+    font-size: 2rem;
+    cursor: pointer;
     margin-top: 10px;
-}
+  }
 
-.go-button:focus{
-    background-color: green;
-    color:white
+  #nav-eco ul { display: none; }
+
+  /* Lógica do Menu hambúrguer */
+  #check-menu:checked ~ #nav-eco ul {
+    display: block;
+  }
+
+  .lista-noticias {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
 }
