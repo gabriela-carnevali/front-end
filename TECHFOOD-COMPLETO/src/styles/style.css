@@ -1,0 +1,222 @@
+/* ==========================================================
+   STYLE.CSS — Estilos da página do Cardápio (index.html)
+   Cards, vitrine, quantidade, preço e botões.
+   ========================================================== */
+
+
+/* ----------------------------------------------------------
+   VITRINE — grid de 3 colunas no desktop
+   display: grid ativa o Grid Layout.
+   repeat(3, 1fr) cria 3 colunas de tamanho igual (1 fração cada).
+   ---------------------------------------------------------- */
+.vitrine-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+
+/* ----------------------------------------------------------
+   CARD DE PRATO
+   ---------------------------------------------------------- */
+.card {
+  border: 1px solid var(--cor-borda);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  background: var(--cor-branco);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  /* transition: define quais propriedades serão animadas e em quanto tempo.
+     Aqui dizemos: se transform ou box-shadow mudarem, faça isso em 0.3s
+     com ritmo "ease" (suave). O hover abaixo vai disparar essa animação. */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* O hover do card cuida da aparência (CSS).
+   O clique e lógica de pedido ficam no JS (separação de responsabilidades). */
+.card:hover {
+  /* transform: translateY(-5px) move o elemento 5px para cima.
+     Não ocupa espaço — é como um "fantasma" visual do elemento.
+     Outros elementos não se movem junto.
+     translateY = eixo vertical. translateX = horizontal. */
+  transform: translateY(-5px);
+
+  /* box-shadow: sombra em volta do elemento.
+     Ordem: deslocamento-X  deslocamento-Y  desfoque  cor */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+
+  /* object-fit: cover faz a imagem preencher o espaço sem distorcer,
+     cortando as bordas se necessário — como um "zoom centralizado". */
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.card h3 {
+  color: var(--cor-primaria);
+  font-size: 1.1rem;
+}
+
+.desc {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+
+/* ----------------------------------------------------------
+   PREÇO E SUBTOTAL
+   ---------------------------------------------------------- */
+.preco {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--cor-destaque);
+  margin: 10px 0;
+}
+
+/* Subtotal calculado pelo JS (só aparece quando há mais de 1 unidade) */
+.subtotal {
+  display: block;
+  font-size: 0.85rem;
+  color: #888;
+  font-style: italic;
+  min-height: 18px;
+}
+
+
+/* ----------------------------------------------------------
+   SELETOR DE QUANTIDADE
+   ---------------------------------------------------------- */
+.quantidade-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #f8f9fa;
+  padding: 8px 15px;
+  border-radius: 25px;
+  border: 1px solid #eee;
+  margin: 5px auto;
+  max-width: 160px;
+  width: 100%;
+}
+
+.quantidade-box label {
+  font-size: 0.8rem;
+  color: #7f8c8d;
+  font-weight: bold;
+}
+
+.quantidade-box input {
+  width: 50px;
+  border: 2px solid var(--cor-destaque);
+  border-radius: 6px;
+  padding: 3px;
+  text-align: center;
+  font-weight: bold;
+  color: var(--cor-primaria);
+  outline: none;
+}
+
+
+/* ----------------------------------------------------------
+   BOTÃO PEDIR AGORA
+   ---------------------------------------------------------- */
+.btn-pedido {
+  background-color: var(--cor-destaque);
+  color: var(--cor-branco);
+  border: none;
+  padding: 12px;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-top: auto;
+
+  /* transition nas propriedades de aparência do botão */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-pedido:hover {
+  background-color: #cf6d17;
+}
+
+.btn-pedido:active {
+  /* :active dispara no momento exato do clique.
+     scale(0.97) encolhe levemente o botão — dá sensação de "pressionar". */
+  transform: scale(0.97);
+}
+
+
+/* ----------------------------------------------------------
+   ANIMAÇÃO DE ENTRADA — usada nos cards gerados dinamicamente pelo JS
+
+   @keyframes define uma animação com nome próprio.
+   "from" = estado inicial, "to" = estado final.
+   O browser interpola (calcula) todos os quadros entre os dois.
+
+   opacity: 0 = invisível, opacity: 1 = totalmente visível.
+   opacity é um valor entre 0 (transparente) e 1 (opaco).
+
+   transform: translateY(20px) = começa 20px abaixo da posição real.
+   O efeito combinado: o card "sobe" enquanto aparece gradualmente.
+
+   Para usar: adicione a classe .card-animado ao elemento no JavaScript.
+   ---------------------------------------------------------- */
+@keyframes entradaCard {
+  from {
+    /* Estado inicial da animação: invisível e deslocado para baixo */
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    /* Estado final: totalmente visível na posição correta */
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* animation: nome  duração  ritmo  preenchimento-final
+   forwards = mantém o estado final (sem forwards o elemento voltaria
+   ao estado "from" ao terminar a animação) */
+.card-animado {
+  animation: entradaCard 0.4s ease forwards;
+}
+
+
+/* ==========================================================
+   RESPONSIVIDADE — Cardápio
+   ========================================================== */
+
+/* Tablet: 2 colunas */
+@media screen and (max-width: 768px) {
+  .vitrine-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Mobile: 1 coluna */
+@media screen and (max-width: 600px) {
+  .vitrine-grid {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+
+  /* Aumenta a área de toque no celular */
+  .btn-pedido {
+    padding: 15px;
+    font-size: 1.1rem;
+  }
+}

@@ -1,0 +1,214 @@
+/* ==========================================================
+   GLOBAL.CSS — Estilos compartilhados por todas as páginas
+   Header, footer, menu, reset geral e responsividade base.
+
+   Por que um arquivo separado?
+   Porque o header e o footer são iguais nas três páginas.
+   Em vez de repetir o mesmo CSS três vezes, centralizamos aqui.
+   Qualquer mudança de cor do header, por exemplo, vale para todo o site.
+   ========================================================== */
+
+
+/* ----------------------------------------------------------
+   VARIÁVEIS DE COR (CSS Custom Properties)
+
+   O :root representa o elemento raiz do HTML (a própria página).
+   Variáveis declaradas aqui ficam disponíveis em QUALQUER arquivo CSS
+   que for carregado depois deste — por isso o global.css vem primeiro
+   no <head> de todas as páginas.
+
+   Como usar: em vez de escrever #2c3e50 em vinte lugares diferentes,
+   você escreve var(--cor-primaria). Se um dia quiser mudar a cor,
+   muda só aqui e todo o site atualiza.
+
+   Sintaxe: --nome-da-variavel: valor;
+   Para usar: color: var(--nome-da-variavel);
+   ---------------------------------------------------------- */
+:root {
+  --cor-primaria: #2c3e50;   /* Azul escuro — header, títulos */
+  --cor-destaque: #e67e22;   /* Laranja — preço, botões, destaques */
+  --cor-amarelo:  #f1c40f;   /* Amarelo — links do menu */
+  --cor-fundo:    #f5f5f0;   /* Fundo geral da página */
+  --cor-branco:   #ffffff;
+  --cor-borda:    #dddddd;
+}
+
+
+/* ----------------------------------------------------------
+   RESET GERAL
+   Remove margens e paddings padrão do navegador,
+   e define box-sizing: border-box para todos os elementos.
+
+   box-sizing: border-box significa que padding e border
+   são incluídos dentro da largura/altura do elemento,
+   evitando surpresas de layout.
+   ---------------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: var(--cor-fundo);
+}
+
+
+/* ----------------------------------------------------------
+   HEADER
+   ---------------------------------------------------------- */
+#topo-loja {
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+  padding: 20px;
+  text-align: center;
+
+  /* position: sticky mantém o header visível enquanto o usuário rola a página.
+     top: 0 faz ele "grudar" no topo da janela.
+     z-index: 100 garante que ele fique acima de outros elementos. */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+#titulo-site {
+  font-size: 1.6rem;
+  margin-bottom: 5px;
+}
+
+#boas-vindas {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--cor-amarelo);
+  margin-bottom: 10px;
+}
+
+
+/* ----------------------------------------------------------
+   MENU DE NAVEGAÇÃO — desktop e hamburguer mobile
+   ---------------------------------------------------------- */
+
+/* Esconde o checkbox real — só usamos ele como "estado ligado/desligado" */
+#bt_menu,
+#label-menu {
+  display: none;
+}
+
+#menu ul {
+  list-style: none;
+  margin-top: 10px;
+}
+
+#menu li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+#menu a {
+  color: var(--cor-amarelo);
+  text-decoration: none;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+
+  /* transition: anima a mudança de propriedade suavemente.
+     "background-color 0.3s ease" significa:
+     - qual propriedade: background-color
+     - quanto tempo: 0.3 segundos
+     - ritmo: ease (começa devagar, acelera, termina devagar) */
+  transition: background-color 0.3s ease;
+}
+
+#menu a:hover {
+  background-color: var(--cor-amarelo);
+  color: var(--cor-primaria);
+}
+
+/* Link da página atual destacado em laranja */
+#menu a.ativo {
+  background-color: var(--cor-destaque);
+  color: var(--cor-branco);
+}
+
+
+/* ----------------------------------------------------------
+   TÍTULO DE SEÇÃO — padrão visual compartilhado
+   ---------------------------------------------------------- */
+.titulo-secao {
+  text-align: center;
+  margin: 40px 0 20px;
+  color: var(--cor-primaria);
+  font-size: 1.8rem;
+}
+
+
+/* ----------------------------------------------------------
+   RODAPÉ
+   ---------------------------------------------------------- */
+#rodape {
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+  padding: 30px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+#rodape p {
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+#data-hora-footer {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: #7f8c8d;
+}
+
+
+/* ==========================================================
+   RESPONSIVIDADE GLOBAL
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   @media screen and (max-width: 600px)
+   Aplica estas regras SOMENTE quando a largura da tela
+   for 600px ou menos — ou seja, celulares.
+   ---------------------------------------------------------- */
+@media screen and (max-width: 600px) {
+
+  /* Exibe o ícone hamburguer ☰ */
+  #label-menu {
+    display: block;
+    font-size: 2rem;
+    color: var(--cor-amarelo);
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Oculta os itens do menu por padrão no mobile */
+  #menu ul {
+    display: none;
+  }
+
+  /* Cada item ocupa linha própria */
+  #menu li {
+    display: block;
+    margin: 8px 0;
+  }
+
+  /* CSS puro: quando o checkbox estiver marcado (~), mostra o menu.
+     O ~ é o seletor "irmão seguinte" — seleciona #menu que vem
+     depois do #bt_menu:checked no mesmo nível do HTML. */
+  #bt_menu:checked ~ #menu ul {
+    display: block;
+    background-color: #1a252f;
+    padding: 10px;
+    border-radius: 0 0 8px 8px;
+  }
+
+  #titulo-site {
+    font-size: 1.2rem;
+  }
+}

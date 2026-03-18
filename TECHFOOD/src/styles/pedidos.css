@@ -1,0 +1,157 @@
+/* ==========================================================
+   PEDIDOS.CSS — Estilos da página de Pedidos (pedidos.html)
+   Lista de pedidos, resumo, total e botões de ação.
+   ========================================================== */
+
+
+/* ----------------------------------------------------------
+   SEÇÃO DE PEDIDOS
+   ---------------------------------------------------------- */
+#secao-pedidos {
+  max-width: 750px;
+  margin: 20px auto;
+  padding: 0 20px 30px;
+}
+
+
+/* ----------------------------------------------------------
+   RESUMO NO TOPO — contador e valor total
+   ---------------------------------------------------------- */
+#resumo-pedidos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+  padding: 12px 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+#valor-total-resumo {
+  color: var(--cor-amarelo);
+  font-size: 1.1rem;
+}
+
+
+/* ----------------------------------------------------------
+   LISTA DE PEDIDOS
+   ---------------------------------------------------------- */
+#lista-pedidos {
+  list-style: decimal;
+  padding-left: 25px;
+  margin: 15px 0;
+}
+
+#lista-pedidos li {
+  padding: 12px;
+  border-bottom: 1px solid var(--cor-borda);
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease;
+}
+
+#lista-pedidos li:hover {
+  background-color: #fff3e0;
+}
+
+.pedido-vazio {
+  list-style: none;
+  text-align: center;
+  color: #aaa;
+  font-style: italic;
+  padding: 30px !important;
+}
+
+.pedido-vazio a {
+  color: var(--cor-destaque);
+  font-weight: bold;
+}
+
+
+/* ----------------------------------------------------------
+   RODAPÉ DA LISTA — total e botões
+   ---------------------------------------------------------- */
+#total-pedidos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+  border-radius: 12px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#valor-total {
+  color: var(--cor-amarelo);
+  font-size: 1.2rem;
+}
+
+.btn-pedidos-grupo {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-limpar-pedidos {
+  background-color: #e74c3c;
+  color: var(--cor-branco);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.85rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-limpar-pedidos:hover {
+  background-color: #c0392b;
+}
+
+.btn-voltar-cardapio {
+  background-color: var(--cor-destaque);
+  color: var(--cor-branco);
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-voltar-cardapio:hover {
+  background-color: #cf6d17;
+}
+
+
+/* ----------------------------------------------------------
+   RESPONSIVIDADE
+   ---------------------------------------------------------- */
+@media screen and (max-width: 600px) {
+  #total-pedidos {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .btn-pedidos-grupo {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .btn-limpar-pedidos,
+  .btn-voltar-cardapio {
+    width: 100%;
+    text-align: center;
+  }
+
+  #resumo-pedidos {
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
+  }
+}
