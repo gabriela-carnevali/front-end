@@ -1,4 +1,67 @@
 /* ==========================================================
+   AULA 06: EVENTOS DOM - PROJETO ECOCYCLE
+   ========================================================== */
+
+// 1. SIMULADOR DE ÁGUA (Evento 'input' para cálculo em tempo real)
+const inputPapel = document.querySelector("#input-papel");
+const resultadoAgua = document.querySelector("#txt-resultado strong");
+
+if (inputPapel && resultadoAgua) {
+  inputPapel.addEventListener("input", () => {
+    // Conversão do valor digitado para número
+    const kg = Number(inputPapel.value);
+
+    // Regra de negócio: 1kg de papel reciclado poupa cerca de 10L de água
+    const totalAgua = kg * 10;
+
+    // Atualiza o ecrã com o resultado
+    resultadoAgua.textContent = totalAgua;
+  });
+}
+
+// 2. CONTROLO DO VÍDEO (Evento 'click' isolado)
+const btnVideo = document.querySelector("#btn-video");
+const thumbnail = document.querySelector("#thumb-video");
+
+if (btnVideo && thumbnail) {
+  btnVideo.addEventListener("click", (event) => {
+    event.preventDefault(); // Evita o comportamento padrão do botão
+
+    // Oculta a imagem (z-index 2) revelando o iframe do YouTube por trás
+    thumbnail.style.display = "none";
+
+    // Altera o texto do botão para feedback visual
+    btnVideo.textContent = "A reproduzir...";
+    btnVideo.style.backgroundColor = "#555";
+    btnVideo.disabled = true;
+  });
+}
+
+// 3. EFEITOS VISUAIS NOS BOTÕES DE LEITURA (Eventos 'mouseover' / 'mouseout')
+const todosBotoes = document.querySelectorAll(".btn-leitura");
+
+todosBotoes.forEach((botao) => {
+  // Apenas aplica o efeito hover se não for o botão do vídeo (que fica cinzento ao clicar)
+  if (botao.id !== "btn-video") {
+    botao.addEventListener("mouseover", () => {
+      botao.style.backgroundColor = "#27ae60"; // Verde mais claro/vibrante
+      botao.style.transform = "scale(1.05)";
+    });
+
+    botao.addEventListener("mouseout", () => {
+      botao.style.backgroundColor = "#1b5e20"; // Volta ao verde original
+      botao.style.transform = "scale(1)";
+    });
+
+    // Alerta de leitura em todos os outros botões
+    botao.addEventListener("click", (event) => {
+      event.preventDefault();
+      alert("A redirecionar para o artigo completo...");
+    });
+  }
+});
+
+/* ==========================================================
    AULA 5: DOM - SELEÇÃO E MANIPULAÇÃO ESTÁTICA (ECOCYCLE)
    ========================================================== */
 
@@ -31,13 +94,13 @@ const segundoCard = document.querySelector('.card-noticia:nth-of-type(2)');
 
 // D) Seleção por Atributo
 // ONDE: Busca a imagem pelo texto alternativo (alt).
-const imgThumbnail = document.querySelector('img[alt="Thumbnail"]');
+const imgThumbnail = document.querySelector('img[alt="Thumbnail de Energia"]');
 
 
 // 4. SELETORES DE COLEÇÃO (Slide 7)
 // querySelectorAll: Captura todos os itens de uma vez e gera uma lista (NodeList).
-const todosBotoes = document.querySelectorAll('.btn-leitura');
-console.log("Total de notícias no portal:", todosBotoes.length);
+const todosOsBotoes = document.querySelectorAll('.btn-leitura');
+console.log("Total de notícias no portal:", todosOsBotoes.length);
 
 
 // 5. MANIPULAÇÃO DE CONTEÚDO (Slide 8)
@@ -55,17 +118,10 @@ imgThumbnail.alt = "Capa do vídeo sobre Energia Solar";
 // Mudando o Título (Balão ao passar o mouse)
 imgThumbnail.title = "Clique no botão 'Assistir' abaixo";
 
-
 // 7. MANIPULAÇÃO DE ESTILO - MÉTODO "CRU" (.style) (Slide 13)
 // ONDE USAR: Mudanças rápidas e pontuais (Estilo Inline).
 tituloPortal.style.color = "#81c784"; 
 tituloPortal.style.letterSpacing = "2px";
-
-
-// 8. MANIPULAÇÃO DE ESTILO - MÉTODO PROFISSIONAL (.classList) (Slide 14)
-// ONDE USAR: Aplicar regras complexas que já estão no seu CSS.
-// POR QUE: É a melhor prática. Ativa a classe '.noticia-destaque' do seu arquivo CSS.
-cardDestaque.classList.add('noticia-destaque');
 
 
 /* ==========================================================
