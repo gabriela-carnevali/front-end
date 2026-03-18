@@ -32,7 +32,6 @@ const imagem_card_um = document.querySelector('#foto-destaque')
 
 imagem_card_um.src = './src/images/esgotado.jpg'
 
-
 const esgotado = document.querySelector('.card h3')
 
 esgotado.style.color = "#808080"
