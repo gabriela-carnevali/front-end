@@ -55,7 +55,7 @@ function exibirBoasVindas() {
 // Exibe a data atual no rodapé de todas as páginas.
 // toLocaleDateString com as opções formata em português completo:
 // ex: "quinta-feira, 12 de março de 2026"
-// ─────────────────────────────────────────────────────────────────────────────
+// class ─────────────────────────────────────────────────────────────────────────────
 function exibirDataFooter() {
   const elemFooter = document.querySelector("#data-hora-footer");
   if (!elemFooter) return;

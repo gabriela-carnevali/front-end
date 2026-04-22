@@ -1,4 +1,4 @@
-/* ==========================================================
+/* ========================================================== class
    CADASTRO.JS — Lógica da página de Cadastro (cadastro.html)
 
    ROADMAP DESTE ARQUIVO:
@@ -136,7 +136,7 @@
 //   if (!div) return;
 //   div.textContent = mensagem;
 //   div.className   = tipo;
-//   setTimeout(function () { div.textContent = ""; div.className = ""; }, 4000);
+//   setTimeout(function () { div.textContent = ""; div.className = ""; }, 4000); Class
 // }
 
 

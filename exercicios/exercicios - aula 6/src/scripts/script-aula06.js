@@ -1,19 +1,36 @@
-//Interação (Clique): Ao clicar no botão "Curtir", incremente o número no contador de curtidas.
 const curtida = document.querySelector('#btn-curtir')
 const contadorCurtidas = document.querySelector('#contador')
 let qtdCurtidas = 0
 
 curtida.addEventListener('click', function() {
-
-    qtdCurtidas +=1
-
-    contadorCurtidas.textContent = `${qtdCurtidas}` 
+    qtdCurtidas += 1
+    contadorCurtidas.textContent = qtdCurtidas
 })
 
-//Monitoramento (Input): Sempre que o usuário digitar no campo de texto, o parágrafo de "Preview" deve mostrar o texto em tempo real.
+const inputTexto = document.querySelector('#campo-texto')
+const preview = document.querySelector('#preview-texto')
 
+inputTexto.addEventListener('input', function() {
+    preview.textContent = inputTexto.value
+})
 
-//Sensores (Mouse): Ao entrar com o mouse na caixa de cor, mude-a para azul. Ao sair, ela deve voltar à cor original.
+const caixaCor = document.querySelector('#caixa-cor')
 
+caixaCor.addEventListener('mouseenter', function() {
+    caixaCor.style.backgroundColor = 'blue'
+})
 
-//Desafio Extra (Reset): Crie um botão (ou use uma tecla) que limpe o input e zera o contador ao mesmo tempo.
+caixaCor.addEventListener('mouseleave', function() {
+    caixaCor.style.backgroundColor = ''
+})
+
+const btnReset = document.querySelector('#btn-reset')
+
+btnReset.addEventListener('click', function() {
+    qtdCurtidas = 0
+    contadorCurtidas.textContent = qtdCurtidas
+    
+    inputTexto.value = ''
+    
+    preview.textContent = ''
+})

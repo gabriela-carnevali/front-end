@@ -4,7 +4,7 @@
    ========================================================== */
 
 
-// ─────────────────────────────────────────────────────────────────────────────
+// class ─────────────────────────────────────────────────────────────────────────────
 // Aula de Eventos DOM
 // DOMContentLoaded dispara quando o HTML foi completamente lido e montado,
 // mas ANTES de imagens e fontes carregarem. É o momento seguro para

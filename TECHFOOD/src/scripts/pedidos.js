@@ -20,45 +20,45 @@
 //
 //
 // // ── Lê os pedidos e exibe na lista ───────────────────────────────────────────
-// function renderizarPedidos() {
-//   const lista          = document.querySelector("#lista-pedidos");
-//   const spanTotal      = document.querySelector("#valor-total");
-//   const spanResumo     = document.querySelector("#valor-total-resumo");
-//   const spanContador   = document.querySelector("#contador-itens");
-//   if (!lista) return;
-//
-//   const pedidos = JSON.parse(localStorage.getItem("techfood_pedidos") || "[]");
-//
-//   if (pedidos.length === 0) {
-//     lista.innerHTML = "<li class='pedido-vazio'>Nenhum pedido ainda. Acesse o <a href='index.html'>Cardápio</a> para adicionar! 😊</li>";
-//     return;
-//   }
-//
-//   lista.innerHTML = "";
-//   let total = 0;
-//
-//   pedidos.forEach(function (pedido) {
-//     const li = document.createElement("li");
-//     li.innerHTML = `
-//       <strong>${pedido.nome}</strong>
-//       — ${pedido.qtd}x R$ ${pedido.preco.toFixed(2).replace(".", ",")}
-//       = <span style="color:#e67e22;font-weight:bold">
-//           R$ ${pedido.subtotal.toFixed(2).replace(".", ",")}
-//         </span>
-//     `;
-//     lista.appendChild(li);
-//     total += pedido.subtotal;
-//   });
-//
-//   const totalFmt = `R$ ${total.toFixed(2).replace(".", ",")}`;
-//   if (spanTotal)    spanTotal.textContent  = totalFmt;
-//   if (spanResumo)   spanResumo.textContent = totalFmt;
-//
-//   const totalItens = pedidos.reduce(function (acc, p) { return acc + p.qtd; }, 0);
-//   if (spanContador) spanContador.textContent = totalItens + (totalItens === 1 ? " item" : " itens");
-// }
-//
-//
+function renderizarPedidos() {
+  const lista = document.querySelector("#lista-pedidos");
+  const spanTotal      = document.querySelector("#valor-total");
+  const spanResumo     = document.querySelector("#valor-total-resumo");
+  const spanContador   = document.querySelector("#contador-itens");
+  if (!lista) return;
+
+  const pedidos = JSON.parse(localStorage.getItem("techfood_pedidos") || "[]");
+
+  if (pedidos.length === 0) {
+    lista.innerHTML = "<li class='pedido-vazio'>Nenhum pedido ainda. Acesse o <a href='index.html'>Cardápio</a> para adicionar! 😊</li>";
+    return;
+  }
+
+  lista.innerHTML = "";
+  let total = 0;
+
+  pedidos.forEach(function (pedido) {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <strong>${pedido.nome}</strong>
+      — ${pedido.qtd}x R$ ${pedido.preco.toFixed(2).replace(".", ",")}
+      = <span style="color:#e67e22;font-weight:bold">
+          R$ ${pedido.subtotal.toFixed(2).replace(".", ",")}
+        </span>
+    `;
+    lista.appendChild(li);
+    total += pedido.subtotal;
+  });
+
+  const totalFmt = `R$ ${total.toFixed(2).replace(".", ",")}`;
+  if (spanTotal)    spanTotal.textContent  = totalFmt;
+  if (spanResumo)   spanResumo.textContent = totalFmt;
+
+  const totalItens = pedidos.reduce(function (acc, p) { return acc + p.qtd; }, 0);
+  if (spanContador) spanContador.textContent = totalItens + (totalItens === 1 ? " item" : " itens");
+}
+
+
 // // ── Limpa todos os pedidos do localStorage ────────────────────────────────────
 // function configurarLimparPedidos() {
 //   const btn = document.querySelector("#btn-limpar-pedidos");

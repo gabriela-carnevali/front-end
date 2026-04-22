@@ -1,6 +1,7 @@
 /* ==========================================================
    MAIN.JS — Lógica da página do Cardápio (index.html)
    Aula 6: Eventos DOM
+   class
 
    ROADMAP DESTE ARQUIVO:
    [✔] Entrega atual  — Saudação, subtotal, hover nos cards, botão pedir
@@ -22,12 +23,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ── PRÓXIMA ENTREGA: Cadastro de Pratos ────────────────────────────────────
   // Quando o cadastro.js estiver pronto, descomentar a linha abaixo.
-  // Ela vai buscar os pratos salvos pelo formulário e exibir no grid dinâmico.
+  // Ela vai buscar os pratos salvos pelo formulário e exibir no grid dinâmico. class
   //
   // renderizarPratosDinamicos();
   // ──────────────────────────────────────────────────────────────────────────
-});
-
+}); 
 // ─────────────────────────────────────────────────────────────────────────────
 // Aula de Eventos DOM | Aula de JavaScript
 // Escuta o evento "input" no campo de quantidade da lasanha.
@@ -155,7 +155,7 @@ function inicializarHoverCards() {
   });
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// class ─────────────────────────────────────────────────────────────────────────────
 // PRÓXIMA ENTREGA — Cadastro de Pratos (descomentar quando chegar a aula)
 // ─────────────────────────────────────────────────────────────────────────────
 //
@@ -198,7 +198,7 @@ function inicializarHoverCards() {
 //   localStorage.setItem("techfood_pedidos", JSON.stringify(lista));
 // }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// class ─────────────────────────────────────────────────────────────────────────────
 // FUTURO — Integração com Back-end (substituir localStorage por API)
 //
 // Quando o back-end estiver pronto, o localStorage vai dar lugar a chamadas
@@ -217,3 +217,4 @@ function inicializarHoverCards() {
 //   console.log("Pedido salvo:", dados);
 // }
 // ──────────────────────────────────
+
