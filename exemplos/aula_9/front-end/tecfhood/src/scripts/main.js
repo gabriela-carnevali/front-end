@@ -1,50 +1,9 @@
-/* ==========================================================
-   MAIN.JS — Lógica da página do Cardápio (index.html)
-
-   ROADMAP DESTE ARQUIVO:
-   [✔] Aula 8  — inicializarSubtotal(), inicializarHoverCards(),
-                 inicializarVitrine(), atualizarPrecoCard(),
-                 salvarPedido() (localStorage), atualizarContadorPedidos().
-   [✔] Aula 9  — renderizarCardapio() adicionada: cards agora vêm da API
-                   via buscarProdutos() (GET /produtos). Grid montado dinamicamente.
-                 salvarPedido() alterada: salva produto_id (vindo do data-id do card)
-                   para que pedidos.js possa enviar à API no formato correto.
-                 atualizarContadorPedidos() alterada: campo p.qtd → p.quantidade.
-                 inicializarSubtotal() desativada: sem cards fixos no HTML,
-                   sem #qtd-lasanha — ver função comentada no final do arquivo.
-   [ ] Aula 10 — renderizarCardapioPorCategoria(): agrupa os cards em seções
-                   (Massas, Sobremesas, Bebidas, Entradas) com base no campo
-                   "categoria" que vem do banco via buscarProdutos().
-                   Cada grupo vira um <section> com título próprio no HTML.
-                 Integração com cadastro.js: pratos cadastrados pelo admin
-                   aparecem no cardápio junto aos pratos do banco.
-   [ ] Futuro  — Filtro de categoria por botão/tab no topo do cardápio.
-                 Destaque: seção especial para pratos marcados como "destaque".
-   ========================================================== */
-
 document.addEventListener("DOMContentLoaded", function () {
   renderizarCardapio(); // NEW — busca produtos da API e monta os cards
   inicializarVitrine();
   inicializarHoverCards();
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
-// renderizarCardapio()                                                    NEW
-// Aula 9: os cards que estavam fixos no HTML agora vêm do banco de dados.
-//
-// Por que inicializarSubtotal() foi removida do DOMContentLoaded?
-//   Na Aula 8, os cards eram fixos no HTML — havia um campo #qtd-lasanha
-//   fixo que o inicializarSubtotal() controlava. Na Aula 9, o grid vem
-//   vazio do servidor e é preenchido aqui. Não existe mais #qtd-lasanha
-//   no HTML — então inicializarSubtotal() não teria nada para encontrar.
-//   A lógica de preço agora é toda controlada por atualizarPrecoCard().
-//
-// data-id: o produto_id do banco — adicionado no card aqui.
-//   Quando o cliente clicar em Pedir Agora, usamos esse ID para mandar
-//   ao servidor — não o nome do prato.
-//
-// try/catch: captura erros de rede ou servidor offline e mostra mensagem.
-// ─────────────────────────────────────────────────────────────────────────────
 async function renderizarCardapio() {
   const grid = document.querySelector("#grid-cardapio");
   if (!grid) return;
@@ -52,11 +11,7 @@ async function renderizarCardapio() {
   grid.innerHTML = "<p class='loading'>Carregando cardápio...</p>";
 
   try {
-    // ── FETCH API em ação — GET /produtos ────────────────────────────────────
-    // buscarProdutos() (api.js) faz a requisição HTTP para o servidor Node.js.
-    // O await "pausa" esta função até a resposta chegar — sem travar a página.
-    // Se o servidor não estiver rodando, cai direto no catch abaixo.
-    const produtos = await buscarProdutos(); // HTTP GET → http://localhost:3000/produtos
+    const produtos = await buscarProdutos();
 
     grid.innerHTML = "";
 
@@ -163,7 +118,7 @@ function inicializarVitrine() {
   });
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// Não tenho mais nada na página HTML ─────────────────────────────────────────────────────────────────────────────
 // atualizarPrecoCard()
 // Aula 8: sem mudanças. Recalcula o preço no card quando muda a quantidade.
 // ─────────────────────────────────────────────────────────────────────────────
